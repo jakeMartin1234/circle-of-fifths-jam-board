@@ -1,0 +1,61 @@
+@media (prefers-reduced-motion: no-preference) {
+    .doughnut-segment {
+        animation: doughnut-segment-rotate 1s linear forwards;
+    }
+    .doughnut-segment-text {
+        animation: doughnut-segment-text-rotate 1s linear forwards;
+    }
+    .doughnut-segment-no-animate:hover,
+    .doughnut-segment-text-no-animate:hover,
+    .doughnut-segment:hover,
+    .doughnut-segment-text:hover {
+        cursor: pointer;
+    }
+}
+
+.doughnut-container {
+    position: absolute;
+    top: 6.0rem;
+    width: 100%;
+    height: auto;
+}
+
+svg {
+    position: absolute;
+    right: 0;
+    left: 0;
+    margin: auto;
+}
+
+.doughnut-segment,
+.doughnut-segment-text {
+    transition-delay: 1s;
+    transform-origin: 50% 50%;
+}
+
+@keyframes doughnut-segment-rotate {
+    from {
+        transform: rotate(0deg)  translateY(-36%);
+    }
+    to {
+        transform: var(--transform);
+    }
+}
+
+@keyframes doughnut-segment-text-rotate {
+    from {
+        transform: rotate(0deg)  translateY(-33%) scale(0.5);
+    }
+    to {
+        transform: var(--transform-text);
+    }
+}
+.doughnut-segment-no-animate {
+    transform: var(--transform);
+    transform-origin: 50% 50%;
+}
+
+.doughnut-segment-text-no-animate {
+    transform: var(--transform-text);
+    transform-origin: 50% 50%;
+}
