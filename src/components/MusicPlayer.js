@@ -1,13 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
-import * as Tone from 'tone';
 import { notes, walkingOnSunshine, heyJoe, heyJude } from '../utils/Notes.js';
 import '../css/musicPlayer.css';
+import { getStoredChordName } from "../utils/Funcs";
 
 const MusicPlayer = ({ setCurrentNoteIndex, chordPlayer }) => {
     const bpm = 60;
-    const noteDuration = '4n';
-
-    const player = new Tone.Player().toDestination();
 
     const sequence = useRef(notes);
     const [audioContextStarted, setAudioContextStarted] = useState(false);
@@ -59,21 +56,14 @@ const MusicPlayer = ({ setCurrentNoteIndex, chordPlayer }) => {
             if (!audioContextStartedRef.current) {
                 return;
             }
-            console.log(`./sounds/piano/${sequence.current[currentNoteIndexRef.current]
-                .slice(0, -1).toLowerCase()}Major.mp3`)
 
-            let sliceUpper = -1;
-            let stringSharp = "";
-            if (sequence.current[currentNoteIndexRef.current].length === 3) {
-                sliceUpper = -2;
-                stringSharp = "Sh"
-            }
+
             if (previousPlayer) {
                 previousPlayer.pause();
             }
+            console.log(`${process.env.PUBLIC_URL}/sounds/piano/${getStoredChordName(sequence.current[currentNoteIndexRef.current])}.mp3`);
             let player = new Audio(
-                `./sounds/piano/${sequence.current[currentNoteIndexRef.current]
-                    .slice(0, sliceUpper).toLowerCase()}${stringSharp}Major.mp3`
+                `${process.env.PUBLIC_URL}/sounds/piano/${getStoredChordName(sequence.current[currentNoteIndexRef.current])}.mp3`
             );
             previousPlayer = player;
             player.play().then(r => {});

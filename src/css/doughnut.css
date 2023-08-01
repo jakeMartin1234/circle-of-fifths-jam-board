@@ -1,17 +1,17 @@
-@media (prefers-reduced-motion: no-preference) {
-    .doughnut-segment {
-        animation: doughnut-segment-rotate 1s linear forwards;
-    }
-    .doughnut-segment-text {
-        animation: doughnut-segment-text-rotate 1s linear forwards;
-    }
-    .doughnut-segment-no-animate:hover,
-    .doughnut-segment-text-no-animate:hover,
-    .doughnut-segment:hover,
-    .doughnut-segment-text:hover {
-        cursor: pointer;
-    }
-}
+/*@media (prefers-reduced-motion: no-preference) {*/
+/*    .doughnut-segment {*/
+/*        animation: doughnut-segment-rotate 1s linear forwards;*/
+/*    }*/
+/*    .doughnut-segment-text {*/
+/*        animation: doughnut-segment-text-rotate 1s linear forwards;*/
+/*    }*/
+/*    .doughnut-segment-no-animate:hover,*/
+/*    .doughnut-segment-text-no-animate:hover,*/
+/*    .doughnut-segment:hover,*/
+/*    .doughnut-segment-text:hover {*/
+/*        cursor: pointer;*/
+/*    }*/
+/*}*/
 
 .doughnut-container {
     position: absolute;
@@ -27,35 +27,90 @@ svg {
     margin: auto;
 }
 
-.doughnut-segment,
-.doughnut-segment-text {
-    transition-delay: 1s;
-    transform-origin: 50% 50%;
+.doughnut-segment {
+    tranform-origin: 50% 50%;
 }
 
-@keyframes doughnut-segment-rotate {
-    from {
-        transform: rotate(0deg)  translateY(-36%);
-    }
-    to {
-        transform: var(--transform);
-    }
-}
+/*.doughnut-segment,*/
+/*.doughnut-segment-text {*/
+/*    transition-delay: 1s;*/
+/*    transform-origin: 50% 50%;*/
+/*}*/
 
-@keyframes doughnut-segment-text-rotate {
-    from {
-        transform: rotate(0deg)  translateY(-33%) scale(0.5);
-    }
-    to {
-        transform: var(--transform-text);
-    }
-}
-.doughnut-segment-no-animate {
-    transform: var(--transform);
-    transform-origin: 50% 50%;
-}
+/*.text {*/
+/*    scale: 0.8;*/
+/*}*/
 
-.doughnut-segment-text-no-animate {
-    transform: var(--transform-text);
-    transform-origin: 50% 50%;
-}
+/*.no-animate {*/
+/*    transform: rotate(0deg) translateY(-33%);*/
+/*    transform-origin: 50% 50%;*/
+/*}*/
+
+/*.cMajor {*/
+/*    rotate: 0deg;*/
+/*}*/
+
+/*.gMajor {*/
+/*    rotate: 30deg;*/
+/*}*/
+
+/*.dMajor {*/
+/*    rotate: 60deg;*/
+/*}*/
+
+/*.aMajor {*/
+/*    rotate: 90deg;*/
+/*}*/
+
+/*.eMajor {*/
+/*    rotate: 120deg;*/
+/*}*/
+
+/*.bMajor {*/
+/*    rotate: 150deg;*/
+/*}*/
+
+/*.gbMajor {*/
+/*    rotate: 180deg;*/
+/*}*/
+
+/*.dbMajor {*/
+/*    rotate: 210deg;*/
+/*}*/
+
+/*.abMajor {*/
+/*    rotate: 240deg;*/
+/*}*/
+
+/*.ebMajor {*/
+/*    rotate: 270deg;*/
+/*}*/
+
+/*.bbMajor {*/
+/*    rotate: 300deg;*/
+/*}*/
+
+/*.fMajor {*/
+/*    rotate: 330deg;*/
+/*}*/
+
+
+
+
+/*@keyframes doughnut-segment-rotate {*/
+/*    from {*/
+/*        transform: rotate(0deg)  translateY(-36%);*/
+/*    }*/
+/*    to {*/
+/*        transform: rotate(0deg) translateY(-36%);*/
+/*    }*/
+/*}*/
+
+/*@keyframes doughnut-segment-text-rotate {*/
+/*    from {*/
+/*        transform: rotate(0deg)  translateY(-33%);*/
+/*    }*/
+/*    to {*/
+/*        transform: rotate(0deg) translateY(-33%);*/
+/*    }*/
+/*}*/

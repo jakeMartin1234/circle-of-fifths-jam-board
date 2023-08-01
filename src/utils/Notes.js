@@ -1,6 +1,6 @@
-const notes = ['C4', 'G4', 'D4', 'A4', 'E4', 'B4', 'F#4', 'C#4', 'G#4', 'D#4', 'A#4', 'F4'];
-const walkingOnSunshine = ['A4', 'D4', 'E4', 'D4'];
-const heyJoe = ['C4', 'G4', 'D4', 'A4', 'E4'];
-const heyJude = ['F4', 'C4', 'G4', 'D4'];
-const vivaLaViva = ['D4', 'A4', 'B4', 'A4'];
+const notes = ['C', 'G', 'D', 'A', 'E', 'B', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F'];
+const walkingOnSunshine = ['A', 'D', 'E', 'D'];
+const heyJoe = ['C', 'G', 'D', 'A', 'E'];
+const heyJude = ['F', 'C', 'G', 'D'];
+const vivaLaViva = ['D', 'A', 'B', 'A'];
 export { walkingOnSunshine, notes, heyJoe, heyJude };
