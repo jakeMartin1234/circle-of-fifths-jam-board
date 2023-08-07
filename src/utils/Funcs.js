@@ -41,6 +41,7 @@ export const getDoughnutStyleOuter = (currentNoteIndex, isAnimating, index) => {
         transforms[index]  :
         `rotate(${index * 30}deg)`,
         opacity: isAnimating ? 1 : 0,
+        cursor: 'pointer'
     }
 
     let textStyle = {
@@ -50,6 +51,7 @@ export const getDoughnutStyleOuter = (currentNoteIndex, isAnimating, index) => {
            textTransforms[index]  :
             `rotate(${index * 30}deg)`,
         opacity: isAnimating ? 1 : 0,
+        cursor: 'pointer'
     }
 
     return [style, textStyle];
@@ -81,6 +83,7 @@ export const getDoughnutStyleInner = (currentNoteIndex, isAnimating, index) => {
             transforms[index]  :
             `rotate(${index * 30}deg)`,
         opacity: isAnimating ? 1 : 0,
+        cursor: 'pointer'
     }
 
     let textStyle = {
@@ -90,6 +93,7 @@ export const getDoughnutStyleInner = (currentNoteIndex, isAnimating, index) => {
             textTransforms[index]  :
             `rotate(${index * 30}deg)`,
         opacity: isAnimating ? 1 : 0,
+        cursor: 'pointer'
     }
 
     return [style, textStyle];

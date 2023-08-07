@@ -11,7 +11,7 @@ const PlayPauseSelect = ({ startAudioContext, stopMelody, sequence, setSequence,
     const theme = useTheme();
     return (
         <div>
-            <div style={{ transform: 'translateX(50px)'}}>
+            <div style={{ transform: 'translateX(45px)'}}>
                 <Button onClick={() => startAudioContext(sequence)}
                         variant="contained"
                         sx={{
@@ -24,7 +24,7 @@ const PlayPauseSelect = ({ startAudioContext, stopMelody, sequence, setSequence,
                     Pause
                 </Button>
             </div>
-            <div>
+            <div style={{ transform: 'translateX(-5px)' }}>
                 <MusicNoteIcon sx={{
                     color: theme.palette.primary.main,
                     marginRight: '10px',
@@ -58,8 +58,9 @@ const PlayPauseSelect = ({ startAudioContext, stopMelody, sequence, setSequence,
                     ))}
                 </Select>
             </div>
-            <div style={{ transform: 'translateX(25px)' }}>
+            <div style={{ transform: 'translateX(12px)' }}>
                 <IconButton disabled={audioContextStarted}
+                            onClick={() => setInstrument('guitar')}
                             sx={{
                                 color: instrument === 'guitar' ? theme.palette.background.default
                                     : theme.palette.primary.main,
@@ -70,7 +71,6 @@ const PlayPauseSelect = ({ startAudioContext, stopMelody, sequence, setSequence,
                 >
                     <Icon path={mdiGuitarElectric}
                           size={1}
-                          onClick={() => setInstrument('guitar')}
                     />
                 </IconButton>
                 <IconButton variant='contained'
@@ -87,17 +87,17 @@ const PlayPauseSelect = ({ startAudioContext, stopMelody, sequence, setSequence,
                     <PianoIcon/>
                 </IconButton>
                 <IconButton disabled={audioContextStarted}
+                            onClick={() => setInstrument('saxophone')}
                             sx={{
                                 color: instrument === 'saxophone' ? theme.palette.background.default
                                     : theme.palette.primary.main,
                                 backgroundColor: instrument === 'saxophone' ? theme.palette.primary.main
                                     : theme.palette.secondary.main,
-                                margin: '15xpx'
+                                margin: '15px'
                             }}
                 >
                     <Icon path={mdiSaxophone}
                           size={1}
-                          onClick={() => setInstrument('saxophone')}
                     />
                 </IconButton>
             </div>

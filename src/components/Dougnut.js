@@ -10,7 +10,7 @@ const doughnutSegmentPath = "M40.85,50" +
                         "A25,25 0 0,0 43.4,60.5" +
                         "Z";
 
-const Doughnut = ({ currentNoteIndex, animate }) => {
+const Doughnut = ({ currentNoteIndex, playButtonNote }) => {
 
     const [isAnimating, setIsAnimating] = useState(false);
     const outerNotes = songs.clockwise.sequence;
@@ -138,8 +138,9 @@ const Doughnut = ({ currentNoteIndex, animate }) => {
                     }
                     return (
                         // eslint-disable-next-line
-                        <a onClick={() => console.log("clicked")}
+                        <a onClick={() => playButtonNote(note)}
                            key={index}
+                           onMouseOver={(e) => e.target.style = {cursor: 'pointer'}}
                         >
                             <g style={styles[0]}>
                                 <path
@@ -175,7 +176,7 @@ const Doughnut = ({ currentNoteIndex, animate }) => {
                 }
                 return (
                     // eslint-disable-next-line
-                    <a onClick={() => console.log("clicked")}
+                    <a onClick={() => playButtonNote(note)}
                        key={index}
                     >
                         <g style={styles[0]}>
