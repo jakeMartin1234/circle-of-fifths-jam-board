@@ -3,7 +3,7 @@ import {songs} from "../utils/Songs";
 import React from "react";
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import Icon from '@mdi/react';
-import { mdiGuitarElectric } from '@mdi/js';
+import { mdiGuitarElectric, mdiSaxophone } from '@mdi/js';
 import PianoIcon from '@mui/icons-material/Piano';
 
 const PlayPauseSelect = ({ startAudioContext, stopMelody, sequence, setSequence, audioContextStarted,
@@ -58,7 +58,7 @@ const PlayPauseSelect = ({ startAudioContext, stopMelody, sequence, setSequence,
                     ))}
                 </Select>
             </div>
-            <div style={{ transform: 'translateX(50px)' }}>
+            <div style={{ transform: 'translateX(25px)' }}>
                 <IconButton disabled={audioContextStarted}
                             sx={{
                                 color: instrument === 'guitar' ? theme.palette.background.default
@@ -86,7 +86,20 @@ const PlayPauseSelect = ({ startAudioContext, stopMelody, sequence, setSequence,
                 >
                     <PianoIcon/>
                 </IconButton>
-
+                <IconButton disabled={audioContextStarted}
+                            sx={{
+                                color: instrument === 'saxophone' ? theme.palette.background.default
+                                    : theme.palette.primary.main,
+                                backgroundColor: instrument === 'saxophone' ? theme.palette.primary.main
+                                    : theme.palette.secondary.main,
+                                margin: '15xpx'
+                            }}
+                >
+                    <Icon path={mdiSaxophone}
+                          size={1}
+                          onClick={() => setInstrument('saxophone')}
+                    />
+                </IconButton>
             </div>
         </div>
     )
