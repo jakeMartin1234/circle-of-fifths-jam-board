@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Doughnut from "./components/Dougnut";
 import './App.css';
 import MusicPlayer from "./components/MusicPlayer";
@@ -6,7 +6,7 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-import {Container, Grid, Typography, Link, IconButton, Button} from "@mui/material";
+import {Container, Grid, Typography, Link, Button} from "@mui/material";
 import GitHubIcon from '@mui/icons-material/GitHub';
 import {getStoredChordName} from "./utils/Funcs";
 import {notes} from "./utils/Notes";
@@ -83,7 +83,7 @@ const App = () => {
                             Circle of Fifths Jam Board
                         </Typography>
                     </Grid>
-                    <Grid item xs={6.5} sm={8.5} md={4.5}
+                    <Grid item xs={9} sm={8.5} md={4.5}
                           sx={{
                               zIndex: 1000,
                               transform: 'translateY(10px)',
@@ -97,7 +97,7 @@ const App = () => {
                             <GitHubIcon sx={{ color: 'white' }} />
                         </Link>
                     </Grid>
-                    <Grid item sm={2}
+                    <Grid item xs={1} sm={2}
                           sx={{
                               zIndex: 1000,
                               transform: 'translateY(10px)',
@@ -120,7 +120,6 @@ const App = () => {
             <Grid item xs={12} sm={12} md={4} styl={{ height: '100%', padding: '16px', width: '300px' }}>
                 <MusicPlayer setCurrentNoteIndex={setCurrentNoteIndex}
                              fadeDuration={fadeDuration}
-                             setFadeDuration={setFadeDuration}
                              setFadeDuration={setFadeDuration}
                              instrument={instrument}
                              setInstrument={setInstrument}
