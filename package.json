@@ -4,6 +4,13 @@
   "private": true,
   "homepage": "https://jakemartin1234.github.io/circle-of-fifths-jam-board/",
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@fontsource/roboto": "^5.0.5",
+    "@mdi/js": "^7.2.96",
+    "@mdi/react": "^1.6.1",
+    "@mui/icons-material": "^5.14.1",
+    "@mui/material": "^5.14.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",

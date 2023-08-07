@@ -1,15 +1,24 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { notes, walkingOnSunshine, heyJoe, heyJude } from '../utils/Notes.js';
-import '../css/musicPlayer.css';
+import { Grid } from "@mui/material";
+
+import { songs } from '../utils/Songs.js';
 import { getStoredChordName } from "../utils/Funcs";
+import MusicPlayerGridItem from "./MusicPlayerGridItem";
+import PlayPauseSelect from "./PlayPauseSelect";
+import SliderControl from "./SliderControl";
 
-const MusicPlayer = ({ setCurrentNoteIndex, chordPlayer }) => {
-    const bpm = 60;
+const MusicPlayer = ({ setCurrentNoteIndex }) => {
 
-    const sequence = useRef(notes);
-    const [audioContextStarted, setAudioContextStarted] = useState(false);
+    const [ sequence, setSequence ] = useState("clockwise");
+    const [ bpm, setBpm ] = React.useState(50);
+    const [ audioContextStarted, setAudioContextStarted ] = useState(false);
+    const [ fadeDuration, setFadeDuration ] = React.useState(0.4);
+    const [ noteDuration, setNoteDuration ] = React.useState(0.25);
+    const [ instrument, setInstrument ] = React.useState("guitar");
+
     const audioContextStartedRef = useRef(false);
     const currentNoteIndexRef = useRef(0);
+
 
     useEffect(() => {
         let cleanupFunction;
@@ -34,9 +43,9 @@ const MusicPlayer = ({ setCurrentNoteIndex, chordPlayer }) => {
     const startAudioContext = (seq) => {
         currentNoteIndexRef.current = 0;
         if (audioContextStartedRef.current) {
-            sequence.current = seq;
+            setSequence(seq);
         } else {
-            sequence.current = seq;
+            setSequence(seq);
             setAudioContextStarted(true);
             audioContextStartedRef.current = true;
         }
@@ -48,28 +57,57 @@ const MusicPlayer = ({ setCurrentNoteIndex, chordPlayer }) => {
         setCurrentNoteIndex(-1);
     };
 
+    const handleAudioPause = (audio) => {
+        if (!audio) return;
+
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const gainNode = audioContext.createGain();
+        const mediaElement = audio;
+
+        gainNode.gain.setValueAtTime(1, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + fadeDuration);
+
+        mediaElement.onended = () => {
+            // Cleanup the AudioContext and GainNode
+            audioContext.close();
+            gainNode.disconnect();
+        };
+
+        mediaElement.onpause = () => {
+            // Pause the media after the fade-out is complete
+            mediaElement.pause();
+        };
+
+        // Connect the GainNode to the media element source
+        const source = audioContext.createMediaElementSource(mediaElement);
+        source.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+    };
+
     const playMelody = () => {
+        const currentSequence = songs[sequence];
         setCurrentNoteIndex(0);
         let previousPlayer = null;
-
+        const bpmPeriod = (60 / bpm) * 1000;
         const playNote = () => {
+            if (previousPlayer) {
+                handleAudioPause(previousPlayer)
+            }
             if (!audioContextStartedRef.current) {
                 return;
             }
-
-
-            if (previousPlayer) {
-                previousPlayer.pause();
-            }
-            console.log(`${process.env.PUBLIC_URL}/sounds/piano/${getStoredChordName(sequence.current[currentNoteIndexRef.current])}.mp3`);
             let player = new Audio(
-                `${process.env.PUBLIC_URL}/sounds/piano/${getStoredChordName(sequence.current[currentNoteIndexRef.current])}.mp3`
+                `${process.env.PUBLIC_URL}/sounds/${instrument}/${getStoredChordName(currentSequence[currentNoteIndexRef.current])}.mp3`
             );
-            previousPlayer = player;
-            player.play().then(r => {});
-            setCurrentNoteIndex(notes.indexOf(sequence.current[currentNoteIndexRef.current]));
-            currentNoteIndexRef.current = (currentNoteIndexRef.current + 1) % sequence.current.length;
-            setTimeout(playNote, (60 / bpm) * 1000);
+            console.log("note:" + currentSequence[currentNoteIndexRef.current])
+            setTimeout(() => {
+                player.volume = 0.60;
+                previousPlayer = player;
+                player.play().then(r => {});
+                setCurrentNoteIndex(songs.clockwise.indexOf(currentSequence[currentNoteIndexRef.current]));
+                currentNoteIndexRef.current = (currentNoteIndexRef.current + 1) % currentSequence.length;
+                setTimeout(playNote, bpmPeriod * noteDuration);
+            }, bpmPeriod * (1 - noteDuration));
         };
 
         playNote();
@@ -81,13 +119,50 @@ const MusicPlayer = ({ setCurrentNoteIndex, chordPlayer }) => {
     };
 
     return (
-        <div className="music-player-container">
-            <button onClick={() => startAudioContext(notes)}>Play Clockwise</button>
-            <button onClick={stopMelody}>Stop Melody</button>
-            <button onClick={() => startAudioContext(walkingOnSunshine)}>Play Walking On Sunshine</button>
-            <button onClick={() => startAudioContext(heyJoe)}>Play Hey Joe</button>
-            <button onClick={() => startAudioContext(heyJude)}>Play Hey Jude</button>
-        </div>
+        <Grid container
+              justify="flex-end"
+              alignItems="center"
+              spacing={2}
+        >
+            <MusicPlayerGridItem>
+                <PlayPauseSelect sequence={sequence}
+                                 setSequence={setSequence}
+                                 instrument={instrument}
+                                 setInstrument={setInstrument}
+                                 stopMelody={stopMelody}
+                                 startAudioContext={startAudioContext}
+                                 audioContextStarted={audioContextStarted}
+                />
+
+            </MusicPlayerGridItem>
+            <MusicPlayerGridItem>
+                <SliderControl
+                    value={bpm}
+                    setValue={setBpm}
+                    audioContextStarted={audioContextStarted}
+                    valueText="BPM"
+                    range={[50, 150]}
+                    step={1}
+                />
+                <SliderControl
+                    value={noteDuration}
+                    setValue={setNoteDuration}
+                    audioContextStarted={audioContextStarted}
+                    valueText="Note Duration"
+                    range={[0, 1]}
+                    step={0.25}
+                />
+                <SliderControl
+                    value={fadeDuration}
+                    setValue={setFadeDuration}
+                    audioContextStarted={audioContextStarted}
+                    valueText="Fade Duration"
+                    range={[0.1, 1.0]}
+                    step={0.01}
+                />
+            </MusicPlayerGridItem>
+        </Grid>
+
     );
 };
 
