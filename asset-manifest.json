@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/circle-of-fifths-jam-board/static/css/main.ddb4683d.css",
-    "main.js": "/circle-of-fifths-jam-board/static/js/main.1e2b2c87.js",
+    "main.js": "/circle-of-fifths-jam-board/static/js/main.010a3657.js",
     "static/media/roboto-latin-500-normal.woff2": "/circle-of-fifths-jam-board/static/media/roboto-latin-500-normal.f25d774ecfe0996f8eb5.woff2",
     "static/media/roboto-latin-700-normal.woff2": "/circle-of-fifths-jam-board/static/media/roboto-latin-700-normal.227c93190fe7f82de3f8.woff2",
     "static/media/roboto-latin-400-normal.woff2": "/circle-of-fifths-jam-board/static/media/roboto-latin-400-normal.b009a76ad6afe4ebd301.woff2",
@@ -60,10 +60,10 @@
     "static/media/roboto-greek-ext-700-normal.woff": "/circle-of-fifths-jam-board/static/media/roboto-greek-ext-700-normal.249853776d22a271b2b5.woff",
     "index.html": "/circle-of-fifths-jam-board/index.html",
     "main.ddb4683d.css.map": "/circle-of-fifths-jam-board/static/css/main.ddb4683d.css.map",
-    "main.1e2b2c87.js.map": "/circle-of-fifths-jam-board/static/js/main.1e2b2c87.js.map"
+    "main.010a3657.js.map": "/circle-of-fifths-jam-board/static/js/main.010a3657.js.map"
   },
   "entrypoints": [
     "static/css/main.ddb4683d.css",
-    "static/js/main.1e2b2c87.js"
+    "static/js/main.010a3657.js"
   ]
 }
