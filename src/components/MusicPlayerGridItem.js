@@ -1,6 +1,8 @@
 import {Grid} from "@mui/material";
+import {useTheme} from "@mui/material/styles";
 
 const MusicPlayerGridItem = ({ children }) => {
+    const theme = useTheme();
     if (!children) {
         return null;
     }
@@ -8,7 +10,7 @@ const MusicPlayerGridItem = ({ children }) => {
         <Grid item
               sx={{
                   marginBottom: '16px',
-                  backgroundColor: '#5a5555',
+                  backgroundColor: theme.palette.secondary.main,
                   borderRadius: '5px',
                   padding: '0.5rem',
                   display: 'flex',

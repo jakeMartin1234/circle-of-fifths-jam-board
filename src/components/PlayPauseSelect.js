@@ -1,18 +1,17 @@
-import {Button, MenuItem, Select, useTheme} from "@mui/material";
+import {Button, IconButton, MenuItem, Select, useTheme} from "@mui/material";
 import {songs} from "../utils/Songs";
 import React from "react";
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import Icon from '@mdi/react';
 import { mdiGuitarElectric } from '@mdi/js';
-
-const instruments = ["guitar", "piano"]
+import PianoIcon from '@mui/icons-material/Piano';
 
 const PlayPauseSelect = ({ startAudioContext, stopMelody, sequence, setSequence, audioContextStarted,
                              instrument, setInstrument }) => {
     const theme = useTheme();
     return (
         <div>
-            <div>
+            <div style={{ transform: 'translateX(50px)'}}>
                 <Button onClick={() => startAudioContext(sequence)}
                         variant="contained"
                         sx={{
@@ -38,38 +37,7 @@ const PlayPauseSelect = ({ startAudioContext, stopMelody, sequence, setSequence,
                     onChange={(e) => setSequence(e.target.value)}
                     sx={{
                         height: 40,
-                        width: 150,
-                        margin: 'auto',
-                        marginTop: '15px',
-                        borderColor: theme.palette.primary.main,
-                        color: theme.palette.primary.main,
-                        "& .MuiSvgIcon-root": {
-                            color: theme.palette.primary.main,
-                        }
-                    }}
-                >
-                    {Object.keys(songs).map((key, index) => (
-                        <MenuItem key={index} value={key}>{key}</MenuItem>
-                    ))}
-                </Select>
-            </div>
-            <div>
-                <Icon path={mdiGuitarElectric}
-                      size={1}
-                      style={{
-                            color: theme.palette.primary.main,
-                            marginRight: '10px',
-                            transform: 'translateY(5px)',
-                      }}
-                />
-                <Select
-                    id="instrument-select"
-                    value={instrument}
-                    disabled={audioContextStarted}
-                    onChange={(e) => setInstrument(e.target.value)}
-                    sx={{
-                        height: 40,
-                        width: 150,
+                        width: 200,
                         margin: 'auto',
                         marginTop: '15px',
                         borderColor: theme.palette.primary.main,
@@ -77,12 +45,48 @@ const PlayPauseSelect = ({ startAudioContext, stopMelody, sequence, setSequence,
                         "& .MuiSvgIcon-root": {
                             color: theme.palette.primary.main,
                         },
+                        "& .MuiOutlinedInput-notchedOutline": {
+                            borderColor: theme.palette.primary.main
+                        },
+                        "& .Mui-focused .MuiOutlinedInput-notchedOutline": {
+                            borderColor: theme.palette.primary.main
+                        }
                     }}
                 >
-                    {instruments.map((element, index) => (
-                        <MenuItem key={index} value={element}>{element}</MenuItem>
+                    {Object.keys(songs).map((key, index) => (
+                        <MenuItem key={index} value={key}>{songs[key].name}</MenuItem>
                     ))}
                 </Select>
+            </div>
+            <div style={{ transform: 'translateX(50px)' }}>
+                <IconButton disabled={audioContextStarted}
+                            sx={{
+                                color: instrument === 'guitar' ? theme.palette.background.default
+                                    : theme.palette.primary.main,
+                                backgroundColor: instrument === 'guitar' ? theme.palette.primary.main
+                                    : theme.palette.secondary.main,
+                                margin: '15px'
+                            }}
+                >
+                    <Icon path={mdiGuitarElectric}
+                          size={1}
+                          onClick={() => setInstrument('guitar')}
+                    />
+                </IconButton>
+                <IconButton variant='contained'
+                            disabled={audioContextStarted}
+                            onClick={() => setInstrument('piano')}
+                            sx={{
+                                color: instrument === 'piano' ? theme.palette.background.default
+                                    : theme.palette.primary.main,
+                                backgroundColor: instrument === 'piano' ? theme.palette.primary.main
+                                    : theme.palette.secondary.main,
+                                margin: '15px'
+                            }}
+                >
+                    <PianoIcon/>
+                </IconButton>
+
             </div>
         </div>
     )

@@ -13,8 +13,8 @@ const doughnutSegmentPath = "M40.85,50" +
 const Doughnut = ({ currentNoteIndex, animate }) => {
 
     const [isAnimating, setIsAnimating] = useState(false);
-    const outerNotes = songs.clockwise;
-    const innerNotes = songs.innerClockwise;
+    const outerNotes = songs.clockwise.sequence;
+    const innerNotes = songs.innerClockwise.sequence;
 
     const outerNotePositions = {
         C: {

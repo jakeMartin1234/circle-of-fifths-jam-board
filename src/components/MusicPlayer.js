@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Grid } from "@mui/material";
 
 import { songs } from '../utils/Songs.js';
+import { notes } from '../utils/Notes.js';
 import { getStoredChordName } from "../utils/Funcs";
 import MusicPlayerGridItem from "./MusicPlayerGridItem";
 import PlayPauseSelect from "./PlayPauseSelect";
@@ -9,7 +10,7 @@ import SliderControl from "./SliderControl";
 
 const MusicPlayer = ({ setCurrentNoteIndex }) => {
 
-    const [ sequence, setSequence ] = useState("clockwise");
+    const [ sequence, setSequence ] = useState("hotelCalifornia");
     const [ bpm, setBpm ] = React.useState(50);
     const [ audioContextStarted, setAudioContextStarted ] = useState(false);
     const [ fadeDuration, setFadeDuration ] = React.useState(0.4);
@@ -85,7 +86,7 @@ const MusicPlayer = ({ setCurrentNoteIndex }) => {
     };
 
     const playMelody = () => {
-        const currentSequence = songs[sequence];
+        const currentSequence = songs[sequence].sequence;
         setCurrentNoteIndex(0);
         let previousPlayer = null;
         const bpmPeriod = (60 / bpm) * 1000;
@@ -96,6 +97,7 @@ const MusicPlayer = ({ setCurrentNoteIndex }) => {
             if (!audioContextStartedRef.current) {
                 return;
             }
+            console.log(`${process.env.PUBLIC_URL}/sounds/${instrument}/${getStoredChordName(currentSequence[currentNoteIndexRef.current])}.mp3`);
             let player = new Audio(
                 `${process.env.PUBLIC_URL}/sounds/${instrument}/${getStoredChordName(currentSequence[currentNoteIndexRef.current])}.mp3`
             );
@@ -104,7 +106,7 @@ const MusicPlayer = ({ setCurrentNoteIndex }) => {
                 player.volume = 0.60;
                 previousPlayer = player;
                 player.play().then(r => {});
-                setCurrentNoteIndex(songs.clockwise.indexOf(currentSequence[currentNoteIndexRef.current]));
+                setCurrentNoteIndex(notes.indexOf(currentSequence[currentNoteIndexRef.current]));
                 currentNoteIndexRef.current = (currentNoteIndexRef.current + 1) % currentSequence.length;
                 setTimeout(playNote, bpmPeriod * noteDuration);
             }, bpmPeriod * (1 - noteDuration));
@@ -141,7 +143,7 @@ const MusicPlayer = ({ setCurrentNoteIndex }) => {
                     setValue={setBpm}
                     audioContextStarted={audioContextStarted}
                     valueText="BPM"
-                    range={[50, 150]}
+                    range={[20, 150]}
                     step={1}
                 />
                 <SliderControl

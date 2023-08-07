@@ -4,19 +4,16 @@ import './index.css';
 import App from './App';
 import {ThemeProvider, Typography} from "@mui/material";
 import theme from './utils/Theme';
-import MediaQuery from 'react-responsive';
+import { isMobile } from "react-device-detect";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <ThemeProvider theme={theme}>
-        <MediaQuery minDeviceWidth={1224}>
-            <App />
-        </MediaQuery>
-        <MediaQuery maxDeviceWidth={1224}>
-            <Typography>
+        {!isMobile &&
+            <App />}
+        {isMobile &&
+            <Typography color="primary" fontSize="30px">
                 This app is not optimized for mobile. Please view on a desktop.
-            </Typography>
-        </MediaQuery>
-        <App />
+            </Typography>}
     </ThemeProvider>,
 );

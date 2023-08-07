@@ -1,9 +1,14 @@
 export const getStoredChordName = (chord) => {
-    let stringFlat = "";
-    if (chord.length === 2) {
-        stringFlat = "b"
+    let extra = "";
+    if (chord.length > 1) {
+        if (chord.charAt(chord.length - 1) === 'm') {
+            extra = chord.slice(1, chord.length - 1) + 'Minor';
+        }
     }
-    return `${chord[0].toLowerCase()}${stringFlat}Major`
+    if (extra === "") {
+        extra = chord.slice(1) + 'Major';
+    }
+    return `${chord[0].toLowerCase()}${extra}`
 }
 
 export const getDoughnutStyleOuter = (currentNoteIndex, isAnimating, index) => {
