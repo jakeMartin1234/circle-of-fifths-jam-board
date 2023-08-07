@@ -78,7 +78,7 @@ const App = () => {
         <Grid container spacing={5}>
             <Grid item xs={12}>
                 <Grid container spacing={1}>
-                    <Grid item xs={12} sm={8} md={8.5}>
+                    <Grid item xs={12} sm={7.5} md={8.5}>
                         <Typography color="primary" fontSize="30px">
                             Circle of Fifths Jam Board
                         </Typography>
@@ -97,7 +97,7 @@ const App = () => {
                             <GitHubIcon sx={{ color: 'white' }} />
                         </Link>
                     </Grid>
-                    <Grid item xs={2} sm={2}
+                    <Grid item xs={2} sm={3.2} md={2}
                           sx={{
                               zIndex: 1000,
                               transform: 'translateY(10px)',
