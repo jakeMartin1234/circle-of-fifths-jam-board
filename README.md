@@ -1,5 +1,5 @@
 # Circle Of Fifths Jam Board
-A small app I created that provides the user with an highly visual way to interact with the circle of fifths.
+A small app I created that provides the user with a highly visual way to interact with the circle of fifths.
 
 Inspired by [Vox's Youtube Video ~ "The most feared song in jazz, explained"](https://www.youtube.com/watch?v=62tIvfP9A2w)
 
