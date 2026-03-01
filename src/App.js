@@ -6,7 +6,7 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-import {Container, Grid, Typography, Link, Button} from "@mui/material";
+import {Container, Grid, Typography, Link} from "@mui/material";
 import GitHubIcon from '@mui/icons-material/GitHub';
 import {getStoredChordName} from "./utils/Funcs";
 import {notes} from "./utils/Notes";
@@ -77,7 +77,7 @@ const App = () => {
     <Container>
         <Grid container spacing={5}>
             <Grid item xs={12}>
-                <Grid container spacing={1}>
+                <Grid container spacing={1} justifyContent="space-between">
                     <Grid item xs={12} sm={7.5} md={8.5}>
                         <Typography color="primary" fontSize="30px">
                             Circle of Fifths Jam Board
@@ -95,22 +95,6 @@ const App = () => {
                               rel="noopener noreferrer"
                         >
                             <GitHubIcon sx={{ color: 'white' }} />
-                        </Link>
-                    </Grid>
-                    <Grid item xs={2} sm={3.2} md={2}
-                          sx={{
-                              zIndex: 1000,
-                              transform: 'translateY(10px)',
-                          }}
-                    >
-                        <Link
-                            href='https://jakemartinaus.me'
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <Button variant='outlined'>
-                                jakemartinaus.me
-                            </Button>
                         </Link>
                     </Grid>
                 </Grid>

@@ -1,5 +1,3 @@
-
-
 const clockwise = ['C', 'G', 'D', 'A', 'E', 'B', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F'];
 const innerClockwise = ['Am', 'Em', 'Bm', 'FShm', 'CShm', 'GShm', 'Ebm', 'Bbm', 'Fm', 'Cm', 'Gm', 'Dm'];
 const heyJoe = ['C', 'G', 'D', 'A', 'E'];
